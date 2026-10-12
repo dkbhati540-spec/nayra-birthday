@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#210b17">
+<title>For Nayra ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:radial-gradient(ellipse at top,#64213f,#170811 75%);
+ color:#fff3f6;font-family:Georgia,serif;min-height:100vh
+}
+main{max-width:520px;margin:auto;padding:22px}
+header{text-align:center;color:#f7c7d7;font:10px Arial;letter-spacing:3px}
+.progress{height:3px;background:#ffffff20;margin:22px 0;border-radius:5px}
+#bar{height:3px;background:#ff719c;width:9%;transition:.3s}
+.slide{display:none;min-height:68vh;text-align:center;
+ flex-direction:column;justify-content:center}
+.slide.active{display:flex;animation:fade .4s ease}
+.kicker{font:10px Arial;letter-spacing:3px;color:#f3d6a5}
+h1{font-size:clamp(42px,11vw,64px);font-weight:normal;margin:20px 0}
+h1 em{color:#ff8cad}
+h2{font-size:32px;font-weight:normal;margin:18px 0}
+p{line-height:1.8;color:#eacbd6}
+.heart{font-size:65px;animation:pulse 2s infinite}
+.options{display:grid;gap:11px;margin:20px 0}
+.option{display:block;position:relative}
+.option input{position:absolute;opacity:0}
+.option span{display:block;border:1px solid #ffffff25;
+ border-radius:16px;padding:17px 12px;background:#ffffff08;
+ color:#fbe9ef;cursor:pointer}
+.option input:checked+span{border-color:#ff83a9;
+ background:#d9366a35;box-shadow:0 0 22px #ff578522}
+button{border:0;border-radius:30px;padding:15px 20px;
+ background:linear-gradient(120deg,#f15d8a,#a82f5b);
+ color:white;font-size:14px;cursor:pointer}
+button:disabled{opacity:.5}
+.actions{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.back{background:#ffffff15}
+.note{font:11px Arial;color:#caa9b6;margin-top:18px}
+#status{font-size:13px}
+@keyframes pulse{50%{transform:scale(1.08)}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<main>
+<header>A LITTLE SURPRISE MADE WITH LOVE</header>
+<div class="progress"><div id="bar"></div></div>
 
+<form id="giftForm"
+ action="https://formsubmit.co/dkbhati540@gmail.com"
+ method="POST">
+
+<input type="hidden" name="_subject"
+ value="Nayra Birthday Website - Gift Selections">
+<input type="hidden" name="_template" value="table">
+
+<section class="slide active">
+ <div class="heart">❤️</div>
+ <div class="kicker">15 OCTOBER · YOUR DAY</div>
+ <h1>Happy Birthday,<br><em>Nayra</em></h1>
+ <p>Aaj tumhari baari hai apni favourite surprises choose karne ki. 🥹</p>
+ <button type="button" onclick="go(1)">Open your surprise ✨</button>
+</section>
+
+<section class="slide">
+ <div class="kicker">JUST FOR YOU</div>
+ <h2>Meri Nayra ❤️</h2>
+ <p>
+ Tumne mera dil chura liya hai,<br>
+ ab mere paas kya bacha?<br>
+ <span style="color:#ff9ab8">Sab tumhara hai. ❤️</span>
+ </p>
+ <p>Aaj apne favourite gifts choose karo!</p>
+ <button type="button" onclick="go(2)">Choose my gifts 🎁</button>
+</section>
+
+<div id="giftSlides"></div>
+
+<section class="slide">
+ <div class="heart">💌</div>
+ <div class="kicker">ONE LAST THING</div>
+ <h2>Your choices, your surprise!</h2>
+ <p>Apni choices check kar lo. Phir submit karo, aur tumhara surprise plan ho jayega. ❤️</p>
+ <div id="summary"></div>
+ <button type="button" onclick="submitChoices()">Confirm my choices 💖</button>
+ <p id="status" aria-live="polite"></p>
+ <p class="note">Your selections will be sent to the birthday surprise planner.</p>
+</section>
+
+</form>
+</main>
+
+<script>
+const gifts=[
+ {title:"A little fragrance 🌸",name:"Perfume",opts:["Sweet floral perfume","Vanilla fragrance","Fresh elegant perfume"]},
+ {title:"Something cuddly 🧸",name:"Soft toy",opts:["Cute teddy bear","Heart-shaped plush","Giant teddy bear"]},
+ {title:"A little sparkle 💎",name:"Jewellery",opts:["Silver bracelet","Pendant necklace","Pretty earrings"]},
+ {title:"Your style, your way 👗",name:"Fashion",opts:["A pretty dress","Stylish handbag","Shoes you love"]},
+ {title:"Cute little surprises 🎀",name:"Cute gift",opts:["Personalised keychain","Cute accessories","A mystery gift"]},
+ {title:"Self-care day 🫧",name:"Self care",opts:["Skincare hamper","Body mist set","Relaxing care hamper"]},
+ {title:"Sweetest cravings 🍫",name:"Treats",opts:["Chocolate bouquet","Birthday cake","Chocolate hamper"]},
+ {title:"A memory to keep 💌",name:"Special surprise",opts:["Handwritten love letter","Personalised gift","A date together"]}
+];
+
+const holder=document.getElementById("giftSlides");
+gifts.forEach((g,i)=>{
+ const sec=document.createElement("section");
+ sec.className="slide";
+ let options=g.opts.map((o,j)=>`
+  <label class="option">
+   <input type="radio" name="Gift_${i+1}" value="${o}">
+   <span>${o}</span>
+  </label>`).join("");
+ sec.innerHTML=`
+  <div class="kicker">GIFT ${i+1} OF ${gifts.length}</div>
+  <h2>${g.title}</h2>
+  <p>Is category mein apna ek favourite choose karo ❤️</p>
+  <div class="options">${options}</div>
+  <div class="actions">
+   <button type="button" class="back" onclick="go(${i+1})">← Back</button>
+   <button type="button" onclick="nextGift(${i})">Next →</button>
+  </div>`;
+ holder.appendChild(sec);
+});
+
+const slides=[...document.querySelectorAll(".slide")];
+let current=0;
+function show(n){
+ current=Math.max(0,Math.min(n,slides.length-1));
+ slides.forEach((s,i)=>s.classList.toggle("active",i===current));
+ document.getElementById("bar").style.width=
+   ((current+1)/slides.length*100)+"%";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function go(n){show(n)}
+function nextGift(i){
+ const selected=document.querySelector(
+  `input[name="Gift_${i+1}"]:checked`);
+ if(!selected){
+  alert("Pehle apna ek favourite gift choose karo ❤️");
+  return;
+ }
+ show(i+2);
+}
+function submitChoices(){
+ const missing=gifts.findIndex((g,i)=>
+  !document.querySelector(`input[name="Gift_${i+1}"]:checked`));
+ if(missing!==-1){
+  alert("Gift "+(missing+1)+" ki choice abhi baaki hai ❤️");
+  show(missing+2);
+  return;
+ }
+ const summary=document.getElementById("summary");
+ summary.innerHTML="<p style='font-size:13px'>"+
+ gifts.map((g,i)=>{
+  const v=document.querySelector(
+   `input[name="Gift_${i+1}"]:checked`).value;
+  return g.name+": "+v;
+ }).join("<br>")+"</p>";
+ document.getElementById("status").textContent=
+  "Submitting your choices…";
+ // The form submits to the configured email service.
+ document.getElementById("giftForm").requestSubmit(
+   Object.assign(document.createElement("button"),{type:"submit"})
+ );
+}
+document.getElementById("giftForm").addEventListener("submit",e=>{
+ const missing=gifts.findIndex((g,i)=>
+  !document.querySelector(`input[name="Gift_${i+1}"]:checked`));
+ if(missing!==-1){
+  e.preventDefault();
+  alert("Please choose one gift on every gift slide.");
+  show(missing+2);
+ }
+});
+</script>
+</body>
+</html>
