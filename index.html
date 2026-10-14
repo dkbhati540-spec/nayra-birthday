@@ -1,923 +1,542 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#f7c8df">
-<title>Happy Birthday Nayu 💗</title>
-
-<style>
-*{box-sizing:border-box}
-
-:root{
- --pink:#f36ba6;
- --rose:#d83f83;
- --deep:#852650;
- --cream:#fff8fb;
- --gold:#ffd98a;
-}
-
-html{scroll-behavior:smooth}
-
-body{
- margin:0;
- min-height:100%;
- font-family:Georgia,'Times New Roman',serif;
- color:var(--deep);
- background:
-  radial-gradient(ellipse at 12% 15%,#ffd8eb 0,transparent 43%),
-  radial-gradient(ellipse at 90% 80%,#e6d5ff 0,transparent 42%),
-  linear-gradient(145deg,#f9cce2,#fff0f7 48%,#f5d9f5);
- overflow-x:hidden;
-}
-
-button,input{font:inherit}
-
-button{touch-action:manipulation}
-
-#ambience{
- position:fixed;
- inset:0;
- z-index:0;
- pointer-events:none;
- overflow:hidden;
-}
-
-.orb{
- position:absolute;
- border-radius:50%;
- background:radial-gradient(circle at 35% 30%,
-  #fff 0, #ffe5f3 18%,#f6a6cd 48%,transparent 72%);
- filter:blur(2px);
- opacity:.55;
- animation:drift 12s ease-in-out infinite alternate;
-}
-
-.orb:nth-child(1){width:150px;height:150px;top:5%;left:-55px}
-.orb:nth-child(2){width:210px;height:210px;right:-100px;top:32%;animation-delay:-4s}
-.orb:nth-child(3){width:120px;height:120px;left:18%;bottom:2%;animation-delay:-7s}
-.orb:nth-child(4){width:90px;height:90px;right:18%;top:8%;animation-delay:-2s}
-
-@keyframes drift{
- to{transform:translate(24px,-25px) scale(1.12)}
-}
-
-.page{
- display:none;
- position:relative;
- z-index:1;
- width:100%;
- min-height:100vh;
- min-height:100svh;
- padding:
-  max(20px,env(safe-area-inset-top))
-  16px
-  max(24px,env(safe-area-inset-bottom));
- align-items:center;
- justify-content:center;
- flex-direction:column;
-}
-
-.page.active{
- display:flex;
- animation:pageIn .55s ease both;
-}
-
-@keyframes pageIn{
- from{opacity:0;transform:translateY(13px)}
- to{opacity:1;transform:translateY(0)}
-}
-
-.card{
- width:100%;
- max-width:520px;
- min-height:min(660px,calc(100svh - 40px));
- padding:30px 21px;
- border:1px solid #ffffffc9;
- border-radius:30px;
- background:linear-gradient(155deg,#ffffffdf,#fff4f9ed);
- box-shadow:
-  0 22px 65px #a52b6230,
-  inset 0 1px 0 #fff;
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- position:relative;
- overflow:hidden;
- isolation:isolate;
-}
-
-.card:before{
- content:"";
- position:absolute;
- z-index:-1;
- width:260px;
- height:260px;
- top:-145px;
- right:-90px;
- border-radius:50%;
- background:radial-gradient(circle,#ffb6d9a0,transparent 70%);
-}
-
-.card:after{
- content:"";
- position:absolute;
- z-index:-1;
- width:250px;
- height:250px;
- bottom:-160px;
- left:-110px;
- border-radius:50%;
- background:radial-gradient(circle,#d9baff70,transparent 70%);
-}
-
-h1{
- font-size:clamp(31px,8vw,45px);
- line-height:1.2;
- text-align:center;
- margin:18px 0;
- color:#a72e66;
- text-shadow:0 3px 18px #f3a2c840;
-}
-
-h2{
- font-size:25px;
- text-align:center;
-}
-
-p{
- font-size:17px;
- line-height:1.8;
- text-align:center;
-}
-
-.eyebrow{
- color:#c45285;
- font-size:11px;
- letter-spacing:4px;
- text-transform:uppercase;
- margin-bottom:9px;
-}
-
-.hero-art{
- width:145px;
- height:145px;
- border-radius:50%;
- display:grid;
- place-items:center;
- font-size:70px;
- margin:12px auto 20px;
- background:radial-gradient(circle at 35% 25%,#fff,#ffe3ef 60%,#ed9bc3);
- box-shadow:0 12px 45px #d94b8b32,inset 0 0 0 5px #ffffffa6;
- animation:breathe 3s ease-in-out infinite;
-}
-
-@keyframes breathe{
- 50%{transform:scale(1.045)}
-}
-
-.decor-line{
- width:100%;
- display:flex;
- align-items:center;
- gap:12px;
- justify-content:center;
- color:#cc6092;
- font-size:12px;
- letter-spacing:4px;
- margin:8px 0;
-}
-
-.decor-line:before,.decor-line:after{
- content:"";
- height:1px;
- width:48px;
- background:linear-gradient(90deg,transparent,#dc86ad);
-}
-
-.decor-line:after{
- transform:scaleX(-1);
-}
-
-button{
- border:1px solid #ffffff80;
- border-radius:30px;
- padding:14px 21px;
- margin:8px 3px;
- color:white;
- background:linear-gradient(130deg,#fa8cba,#d83d81);
- font-size:16px;
- box-shadow:0 8px 22px #d83d8130;
- cursor:pointer;
- transition:transform .2s,box-shadow .2s;
-}
-
-button:active{transform:scale(.97)}
-
-button:focus-visible{
- outline:3px solid #ac4c8b;
- outline-offset:3px;
-}
-
-button.secondary{
- color:#a33368;
- background:#fff;
- border:1px solid #f0bad2;
- box-shadow:0 5px 16px #a52b6210;
-}
-
-button:disabled{opacity:.5}
-
-.small{font-size:13px}
-
-.hidden{display:none!important}
-
-.progress-wrap{
- width:100%;
- max-width:520px;
- display:flex;
- align-items:center;
- gap:10px;
- margin-bottom:12px;
-}
-
-.progress-track{
- height:4px;
- flex:1;
- background:#ffffffa0;
- border-radius:10px;
- overflow:hidden;
-}
-
-.progress-fill{
- width:11.11%;
- height:100%;
- background:linear-gradient(90deg,#d83d81,#f8a0c8);
- border-radius:10px;
- transition:width .4s;
-}
-
-.step-label{
- font-size:11px;
- letter-spacing:1px;
- color:#a64b77;
- white-space:nowrap;
-}
-
-/* CAKE */
-
-#cakeArea{
- position:relative;
- width:min(350px,100%);
- height:355px;
- margin:12px auto 0;
- flex-shrink:0;
-}
-
-.cake-shadow{
- position:absolute;
- bottom:9px;
- left:6%;
- width:88%;
- height:34px;
- background:#9b466d25;
- border-radius:50%;
- filter:blur(8px);
-}
-
-.cake-board{
- position:absolute;
- bottom:18px;
- left:3%;
- width:94%;
- height:27px;
- border-radius:50%;
- background:linear-gradient(180deg,#fff9fc,#e5b8cd 45%,#fff2f7 72%,#bc7e9e);
- border:2px solid #f8dfeb;
- box-shadow:0 9px 14px #7a294329;
-}
-
-.cake{
- position:absolute;
- bottom:34px;
- left:12%;
- width:76%;
- height:158px;
- overflow:visible;
- transform-origin:50% 100%;
- transition:filter .5s;
-}
-
-.cake-body{
- position:absolute;
- inset:0;
- overflow:hidden;
- border-radius:12px 12px 25px 25px;
- background:
-  linear-gradient(90deg,#b94665 0%,#f58fb1 12%,#e86c94 50%,#ba3c67 92%,#8d2c4e 100%);
- box-shadow:
-  inset 10px 0 14px #ffffff50,
-  inset -12px 0 15px #74244338,
-  0 8px 12px #81334d25;
- clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-}
-
-.cake-body:before{
- content:"";
- position:absolute;
- inset:0;
- background:
-  linear-gradient(to bottom,
-   #fff0f5 0 13%,
-   #f5a0bd 13% 19%,
-   #743239 19% 25%,
-   #f9d2df 25% 34%,
-   #a43c50 34% 41%,
-   #f6a4c0 41% 48%,
-   #fff0f5 48% 54%,
-   #ed81a8 54% 100%);
-}
-
-.cake-body:after{
- content:"";
- position:absolute;
- top:0;
- left:0;
- width:100%;
- height:100%;
- background:linear-gradient(90deg,transparent 65%,#7b24432c);
-}
-
-.cake-top{
- position:absolute;
- z-index:2;
- top:-15px;
- left:0;
- width:100%;
- height:39px;
- border-radius:50%;
- background:
-  radial-gradient(ellipse at 30% 28%,#fff 0,#fff7fb 27%,transparent 60%),
-  linear-gradient(#fffaff,#ffdce9 65%,#ef9bb8);
- border:1px solid #f6c4d8;
- box-shadow:inset 0 5px 9px #fff;
-}
-
-.cake-top:after{
- content:"";
- position:absolute;
- left:5%;
- top:24px;
- width:90%;
- height:10px;
- border-radius:50%;
- background:repeating-radial-gradient(circle at 5px 5px,#fff 0 2.5px,#f3b6cc 3px 6px);
-}
-
-.icing-drips{
- position:absolute;
- z-index:3;
- top:13px;
- left:0;
- width:100%;
- height:23px;
- background:
-  radial-gradient(ellipse at 12% 0%,#fff0f6 0 13px,transparent 14px),
-  radial-gradient(ellipse at 34% 0%,#fff0f6 0 10px,transparent 11px),
-  radial-gradient(ellipse at 60% 0%,#fff0f6 0 14px,transparent 15px),
-  radial-gradient(ellipse at 86% 0%,#fff0f6 0 12px,transparent 13px);
-}
-
-.cake-pearls{
- position:absolute;
- z-index:4;
- bottom:12px;
- left:5%;
- width:90%;
- height:12px;
- background:radial-gradient(circle,#ffe9ad 0 3px,transparent 4px) 0 0/19px 12px repeat-x;
-}
-
-.cake-topper{
- position:absolute;
- z-index:7;
- bottom:190px;
- left:0;
- width:100%;
- text-align:center;
- font-size:clamp(17px,4.5vw,22px);
- font-style:italic;
- color:#9d315e;
- text-shadow:0 2px 5px white;
-}
-
-.candle{
- position:absolute;
- z-index:8;
- bottom:185px;
- left:calc(50% - 6px);
- width:12px;
- height:47px;
- border-radius:4px;
- background:repeating-linear-gradient(135deg,#fff9f5 0 7px,#e84d8a 7px 13px);
- box-shadow:2px 3px 5px #7a24452b;
-}
-
-.flame{
- position:absolute;
- top:-24px;
- left:1px;
- width:11px;
- height:21px;
- border-radius:70% 20% 65% 50%;
- transform:rotate(45deg);
- background:radial-gradient(ellipse at 60% 65%,#fff9bd 0 15%,#ffcf43 35%,#ff812e 70%);
- box-shadow:0 0 12px 4px #ffb33c80,0 0 26px 7px #ff8c3940;
- animation:flicker .45s infinite alternate;
-}
-
-@keyframes flicker{
- to{transform:rotate(50deg) scale(1.08)}
-}
-
-.flame.out{
- animation:flameOut .4s forwards;
-}
-
-@keyframes flameOut{
- to{opacity:0;transform:translateY(-22px) scale(.1)}
-}
-
-.cake-slice{
- position:absolute;
- z-index:6;
- bottom:34px;
- right:12%;
- width:29%;
- height:120px;
- opacity:0;
- transform:translate(0,0) rotate(0);
- transform-origin:80% 100%;
- pointer-events:none;
-}
-
-.slice-top{
- position:absolute;
- top:0;
- left:0;
- width:100%;
- height:34px;
- border-radius:50%;
- background:linear-gradient(135deg,#fff,#ffe2ed 75%,#ed9ab8);
- border:1px solid #efb5cb;
-}
-
-.slice-side{
- position:absolute;
- top:16px;
- left:0;
- width:100%;
- height:104px;
- clip-path:polygon(0 0,100% 12%,100% 100%,0 100%);
- background:linear-gradient(to bottom,
-  #f7c4d5 0 15%,
-  #7e323a 15% 23%,
-  #f9b2ca 23% 38%,
-  #8d343c 38% 46%,
-  #f8c0d4 46% 61%,
-  #d95380 61% 100%);
- box-shadow:inset -5px 0 6px #8b264536;
-}
-
-.slice-face{
- position:absolute;
- z-index:2;
- bottom:0;
- right:0;
- width:44%;
- height:100%;
- clip-path:polygon(100% 0,100% 100%,0 100%);
- background:linear-gradient(90deg,#f8c2d4,#b64060);
-}
-
-.cake-knife{
- position:absolute;
- z-index:10;
- top:48px;
- right:1%;
- font-size:56px;
- opacity:0;
- transform:rotate(-40deg);
- transform-origin:70% 80%;
- pointer-events:none;
-}
-
-.cake-knife.cutting{
- opacity:1;
- animation:knifeCut 1.25s ease-in-out forwards;
-}
-
-@keyframes knifeCut{
- 0%{transform:translate(30px,-20px) rotate(-45deg)}
- 35%{transform:translate(-35px,70px) rotate(0deg)}
- 62%{transform:translate(-35px,70px) rotate(0deg)}
- 100%{transform:translate(50px,8px) rotate(-35deg)}
-}
-
-.cake.is-cut .cake-body{
- clip-path:polygon(0 0,100% 0,100% 60%,76% 100%,0 100%);
-}
-
-.cake.is-cut .cake-top{
- clip-path:polygon(0 0,100% 0,100% 60%,76% 100%,0 100%);
-}
-
-.cake-slice.separating{
- animation:sliceSeparate 1.15s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-@keyframes sliceSeparate{
- 0%{opacity:1;transform:translate(0,0) rotate(0)}
- 25%{opacity:1;transform:translate(0,0) rotate(0)}
- 100%{opacity:1;transform:translate(46px,-8px) rotate(9deg)}
-}
-
-.cake-sparkles{
- position:absolute;
- inset:0;
- pointer-events:none;
- color:#d99b36;
- font-size:22px;
- text-shadow:0 0 12px #ffca68;
- animation:sparkle 1.4s infinite alternate;
-}
-
-@keyframes sparkle{to{opacity:.4;transform:scale(.97)}}
-
-#timer{
- font-size:31px;
- font-weight:bold;
- margin:8px;
- color:#bf3e78;
-}
-
-/* SHAYARI */
-
-.shayari{
- font-size:clamp(18px,5vw,23px);
- line-height:2;
- white-space:pre-line;
- color:#8e315e;
- margin:20px 0;
-}
-
-/* VOICE NOTE */
-
-audio{width:100%;margin:16px 0}
-
-.upload-box{
- width:100%;
- padding:22px 15px;
- border:1px dashed #df8bb2;
- border-radius:20px;
- background:#fff8fc;
- text-align:center;
- margin:10px 0;
-}
-
-input[type=file]{
- display:block;
- width:100%;
- max-width:100%;
- margin:12px auto;
- color:#a42d63;
- font-size:13px;
-}
-
-input[type=file]::file-selector-button{
- border:0;
- padding:10px 12px;
- border-radius:20px;
- background:#f6d3e4;
- color:#8e315e;
- margin-right:8px;
-}
-
-/* PHOTOS */
-
-#photoPreview{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:12px;
- width:100%;
- margin:14px 0;
-}
-
-#photoPreview img{
- width:100%;
- height:clamp(135px,35vw,205px);
- object-fit:cover;
- border-radius:15px;
- border:3px solid white;
- box-shadow:0 5px 16px #a52b6222;
-}
-
-#photoPreview:empty{display:none}
-
-/* CHOICES */
-
-.options{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:12px;
- width:100%;
- margin:22px 0;
-}
-
-.choice{
- width:100%;
- min-height:100px;
- margin:0;
- padding:12px 5px;
- border:1px solid #f1bdd3;
- border-radius:19px;
- background:linear-gradient(150deg,#fff,#fff0f7);
- color:#94335e;
- box-shadow:0 5px 15px #ce5d8c12;
- line-height:1.6;
-}
-
-.choice.selected{
- background:linear-gradient(135deg,#ed5795,#bd2c6b);
- color:white;
- border-color:#df4b88;
- box-shadow:0 8px 22px #d83d8145;
- transform:translateY(-2px);
-}
-
-.status{
- color:#a33368;
- font-size:13px;
- overflow-wrap:anywhere;
-}
-
-.final-message{
- font-size:17px;
- line-height:2;
-}
-
-@media(max-height:700px){
- .page{padding-top:12px;padding-bottom:12px}
- .card{min-height:calc(100svh - 24px);padding:20px 17px}
- .hero-art{width:105px;height:105px;font-size:52px;margin:6px auto 12px}
- #cakeArea{transform:scale(.88);transform-origin:top center;margin-bottom:-35px}
- .shayari{line-height:1.7;margin:10px 0}
-}
-
-@media(min-width:600px){
- .page{padding:28px}
- .card{padding:35px 30px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Nayu ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #2b0314 0%, #4a001f 40%, #880e4f 75%, #2b0314 100%);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background Floating Hearts */
+    .bg-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .heart-particle {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.25);
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      bottom: -40px;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      20% { opacity: 0.6; }
+      100% {
+        transform: translateY(-110vh) rotate(360deg) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    /* Container Card */
+    .container {
+      width: 90%;
+      max-width: 650px;
+      min-height: 520px;
+      background: rgba(43, 3, 20, 0.75);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 105, 180, 0.3);
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(233, 30, 99, 0.3);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Pages Management */
+    .page {
+      display: none;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typography */
+    h1.title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: #ff80ab;
+      text-shadow: 0 0 15px rgba(255, 128, 171, 0.6);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .wish-text {
+      font-size: 1.25rem;
+      color: #f8bbd0;
+      line-height: 1.7;
+      margin-bottom: 35px;
+      font-weight: 300;
+    }
+
+    /* Shayari Box */
+    .shayri-box {
+      font-family: 'Rozha One', serif, 'Poppins';
+      font-size: 1.35rem;
+      color: #ff80ab;
+      line-height: 2.1;
+      background: rgba(136, 14, 79, 0.3);
+      border-left: 4px solid #ff4081;
+      border-right: 4px solid #ff4081;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+      width: 100%;
+      word-break: break-word;
+    }
+
+    /* Personal Heartfelt Message */
+    .heartfelt-box {
+      font-size: 1.15rem;
+      color: #fce4ec;
+      line-height: 1.9;
+      background: rgba(136, 14, 79, 0.25);
+      border: 1px solid rgba(255, 64, 129, 0.3);
+      padding: 25px;
+      border-radius: 18px;
+      text-align: justify;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    /* Final Page Styling */
+    .final-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      color: #ff4081;
+      text-shadow: 0 0 20px rgba(255, 64, 129, 0.8);
+      margin-bottom: 10px;
+    }
+    .enjoy-text {
+      font-size: 1.4rem;
+      color: #ff80ab;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .signature {
+      font-size: 1.2rem;
+      color: #f8bbd0;
+      margin-bottom: 35px;
+    }
+    .signature span {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #ff4081;
+      display: block;
+      margin-top: 5px;
+    }
+    .dm-note {
+      font-size: 0.85rem;
+      color: #f48fb1;
+      opacity: 0.85;
+      font-style: italic;
+      margin-top: 15px;
+      max-width: 90%;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn {
+      background: linear-gradient(45deg, #e91e63, #ff4081);
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(233, 30, 99, 0.5);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(255, 64, 129, 0.7);
+      background: linear-gradient(45deg, #ff4081, #f50057);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    /* CAKE & CANDLE ANIMATION */
+    .cake-container {
+      position: relative;
+      margin: 40px auto 30px auto;
+      width: 200px;
+      height: 180px;
+    }
+    .cake-plate {
+      width: 220px;
+      height: 14px;
+      background: #e0e0e0;
+      background: linear-gradient(to right, #9e9e9e, #ffffff, #9e9e9e);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: -10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .cake-layer {
+      position: absolute;
+      width: 180px;
+      border-radius: 12px 12px 0 0;
+      left: 10px;
+    }
+    .layer-bottom {
+      height: 60px;
+      bottom: 14px;
+      background: #880e4f;
+      border-bottom: 4px solid #4a001f;
+    }
+    .layer-middle {
+      height: 50px;
+      bottom: 74px;
+      width: 150px;
+      left: 25px;
+      background: #c2185b;
+      border-bottom: 4px solid #880e4f;
+    }
+    .layer-top {
+      height: 40px;
+      bottom: 124px;
+      width: 120px;
+      left: 40px;
+      background: #e91e63;
+      border-radius: 10px 10px 0 0;
+    }
+    /* Drips */
+    .icing {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: #ff80ab;
+      border-radius: 10px 10px 8px 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Candle */
+    .candle {
+      position: absolute;
+      width: 12px;
+      height: 35px;
+      background: linear-gradient(to right, #fff, #ff80ab, #fff);
+      top: -35px;
+      left: 54px;
+      border-radius: 3px;
+      z-index: 5;
+    }
+    .wick {
+      position: absolute;
+      width: 2px;
+      height: 8px;
+      background: #222;
+      top: -8px;
+      left: 5px;
+    }
+    .flame {
+      position: absolute;
+      width: 16px;
+      height: 24px;
+      background: radial-gradient(ellipse at bottom, #ffeb3b 0%, #ff9800 50%, rgba(255,87,34,0) 100%);
+      border-radius: 50% 50% 35% 35%;
+      top: -30px;
+      left: -2px;
+      box-shadow: 0 0 15px #ff9800, 0 0 25px #ff5722;
+      animation: flicker 0.6s infinite alternate;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .flame.extinguished {
+      opacity: 0;
+      transform: scale(0);
+    }
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.1) rotate(2deg); }
+    }
+
+    /* Smoke effect */
+    .smoke {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: rgba(200, 200, 200, 0.6);
+      border-radius: 50%;
+      top: -32px;
+      left: 2px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .smoke.active {
+      animation: smokeRise 2s ease-out forwards;
+    }
+    @keyframes smokeRise {
+      0% { opacity: 0.8; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-40px) scale(3); }
+    }
+
+    /* Timer Text */
+    .timer-text {
+      font-size: 1.1rem;
+      color: #ff80ab;
+      margin-top: 15px;
+      font-weight: 600;
+      min-height: 28px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+        min-height: 480px;
+      }
+      h1.title {
+        font-size: 2.5rem;
+      }
+      .wish-text {
+        font-size: 1.1rem;
+      }
+      .shayri-box {
+        font-size: 1.15rem;
+        line-height: 1.9;
+        padding: 18px 12px;
+      }
+      .heartfelt-box {
+        font-size: 1rem;
+        padding: 18px;
+      }
+      .final-title {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="ambience" aria-hidden="true">
- <div class="orb"></div>
- <div class="orb"></div>
- <div class="orb"></div>
- <div class="orb"></div>
-</div>
+  <!-- Floating Hearts Background -->
+  <div class="bg-hearts" id="heartsContainer"></div>
 
-<!-- PAGE 1: WELCOME -->
-<section class="page active" id="p1">
- <div class="card">
-  <div class="eyebrow">A little surprise for you</div>
-  <div class="hero-art">🎂</div>
-  <div class="decor-line">A SPECIAL DAY</div>
-  <h1>Happy Birthday Nayu</h1>
-  <p>
-   I wish God fulfills all your wishes
-   and fills your life with happiness,
-   love and beautiful memories. 💗
-  </p>
-  <button onclick="go(2)">Let's celebrate your birthday ✨</button>
-  <p class="small">Made with love, just for you</p>
- </div>
-</section>
+  <!-- Main Application Container -->
+  <div class="container">
 
-<!-- PAGE 2: CAKE -->
-<section class="page" id="p2">
- <div class="card">
-  <div class="eyebrow">Make a wish</div>
-  <h1 style="font-size:clamp(28px,7vw,38px)">Your Birthday Cake</h1>
-  <p class="small">A little sweetness for your special day 🎂</p>
+    <!-- PAGE 1: Intro Wish -->
+    <div class="page active" id="page1">
+      <h1 class="title">Happy Birthday Dear Nayu ❤️</h1>
+      <p class="wish-text">I wish god fullfill your all wishes and your deams come true</p>
+      <button class="btn" onclick="goToPage(2)">let's cut the cake</button>
+    </div>
 
-  <div id="cakeArea">
-   <div class="cake-sparkles">✦　✧　✦　✧　✦</div>
-   <div class="cake-topper">Happy Birthday ♡</div>
-   <div class="candle">
-    <div class="flame" id="flame"></div>
-   </div>
+    <!-- PAGE 2: Cake Cutting & Blowout -->
+    <div class="page" id="page2">
+      <h1 class="title" style="font-size: 2.5rem;">Blow Out The Candle 🎂</h1>
+      
+      <div class="cake-container">
+        <div class="cake-layer layer-bottom"></div>
+        <div class="cake-layer layer-middle"></div>
+        <div class="cake-layer layer-top">
+          <div class="icing"></div>
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame" id="flame"></div>
+            <div class="smoke" id="smoke"></div>
+          </div>
+        </div>
+        <div class="cake-plate"></div>
+      </div>
 
-   <div class="cake" id="cake">
-    <div class="cake-body"></div>
-    <div class="cake-top"></div>
-    <div class="icing-drips"></div>
-    <div class="cake-pearls"></div>
-   </div>
+      <div class="timer-text" id="timerStatus">Candle will blow out in 5 seconds... ✨</div>
+      
+      <div id="page2NextBtn" style="display: none; margin-top: 15px;">
+        <button class="btn" onclick="goToPage(3)">i wrote a shayri for you</button>
+      </div>
+    </div>
 
-   <div class="cake-slice" id="cakeSlice">
-    <div class="slice-top"></div>
-    <div class="slice-side"></div>
-    <div class="slice-face"></div>
-   </div>
+    <!-- PAGE 3: Shayari -->
+    <div class="page" id="page3">
+      <div class="shayri-box">
+        तुम हक़ीक़त नहीं हो हसरत हो<br>
+        जो मिले ख़्वाब में वो दौलत हो<br>
+        तुम हो ख़ुशबू के ख़्वाब की ख़ुशबू<br>
+        और उतनी ही बे-मुरव्वत हो<br>
+        तुम हो पहलू में पर क़रार नहीं<br>
+        या'नी ऐसा है जैसे फ़ुर्क़त हो<br>
+        किस लिए देखती हो आईना<br>
+        तुम तो ख़ुद से भी ख़ूब-सूरत हो
+      </div>
+      <button class="btn" onclick="goToPage(4)">I wrote something for you from my bottom of the heart</button>
+    </div>
 
-   <div class="cake-board"></div>
-   <div class="cake-shadow"></div>
-   <div class="cake-knife" id="cakeKnife">🔪</div>
+    <!-- PAGE 4: Heartfelt Note -->
+    <div class="page" id="page4">
+      <div class="heartfelt-box">
+        मै हमेशा से आपके लिए एक सॉफ्ट कॉर्नर रखते आया हु दिल में , मुझे पता है आप समझते हो कि मैं दूसरे लड़कों की तरह ही था , पर मैने कभी भी आपका न तो बुरा चाह है न चाहूंगा ,<br><br>
+        मै चाहता हु आप अपनी पढ़ाई पर अच्छा से ध्यान देके पढ़ो और एक नौकरी ले लो ताकि किसी पर डिपेंड न रहो और किसी की 2 बात सुन न सको
+      </div>
+      <button class="btn" onclick="goToPage(5)">final words</button>
+    </div>
+
+    <!-- PAGE 5: Final Words -->
+    <div class="page" id="page5">
+      <h1 class="final-title">Happy Birthday To You!</h1>
+      <p class="enjoy-text">Once again Happy Birthday to you my dear<br>Enjoy your special day</p>
+      
+      <div class="signature">
+        Your well-wishers
+        <span>Devendra ❤️</span>
+      </div>
+
+      <div class="dm-note">
+        if you think you have to celebrate your birthday with me if you are comfortable you can DM me 🥹
+      </div>
+    </div>
+
   </div>
 
-  <div id="timerBlock" class="hidden">
-   <p id="timer">10</p>
-   <p>Close your eyes, make a wish and blow out the candle. 🕯️</p>
-   <button onclick="blow()">Blow out candle 💨</button>
-  </div>
+  <script>
+    // Create Background Hearts Dynamics
+    function createBgHearts() {
+      const container = id('heartsContainer');
+      const heartSymbols = ['❤️', '💖', '💗', '💕', '🌸'];
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+        heart.style.animationDelay = (Math.random() * 5) + 's';
+        heart.style.fontSize = (16 + Math.random() * 18) + 'px';
+        container.appendChild(heart);
+      }
+    }
 
-  <div id="cutBlock" class="hidden">
-   <p><b>Your wish is on its way! 💖</b></p>
-   <button onclick="cutCake()">Let's cut the cake 🔪</button>
-  </div>
+    function id(elemId) {
+      return document.getElementById(elemId);
+    }
 
-  <div id="cakeNext" class="hidden">
-   <p>One sweet moment, just for you. 💗</p>
-   <button onclick="go(3)">I wrote a shayari for you</button>
-  </div>
- </div>
-</section>
+    let candleTimer = null;
 
-<!-- PAGE 3: SHAYARI -->
-<section class="page" id="p3">
- <div class="card">
-  <div class="eyebrow">A few words for you</div>
-  <div class="hero-art" style="width:100px;height:100px;font-size:46px">🌷</div>
+    // Page Navigation Logic
+    function goToPage(pageNum) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => p.classList.remove('active'));
 
-  <p class="shayari">तुम हो पहलू में पर क़रार नहीं
-या'नी ऐसा है जैसे फ़ुर्क़त हो
+      setTimeout(() => {
+        const targetPage = id('page' + pageNum);
+        if (targetPage) {
+          targetPage.classList.add('active');
+        }
 
-तुम हो अंगड़ाई रंग-ओ-निकहत की
-कैसे अंगड़ाई से शिकायत हो
+        // Trigger confetti on page 1 & 5
+        if (pageNum === 1 || pageNum === 5) {
+          triggerConfetti();
+        }
 
-किस लिए देखती हो आईना
-तुम तो ख़ुद से भी ख़ूब-सूरत हो</p>
+        // If Page 2 (Cake Page) start 5 sec timer
+        if (pageNum === 2) {
+          startCandleTimer();
+        }
+      }, 150);
+    }
 
-  <div class="decor-line">JUST FOR YOU</div>
-  <button onclick="go(4)">I have a voice note for you 🎧</button>
- </div>
-</section>
+    // Candle Blowout Timer (5 Seconds)
+    function startCandleTimer() {
+      let timeLeft = 5;
+      const timerStatus = id('timerStatus');
+      const flame = id('flame');
+      const smoke = id('smoke');
+      const nextBtn = id('page2NextBtn');
 
-<!-- PAGE 4: VOICE NOTE -->
-<section class="page" id="p4">
- <div class="card">
-  <div class="eyebrow">Listen to something special</div>
-  <div class="hero-art">🎧</div>
-  <h1>A Little Message</h1>
-  <p>A voice note, made more special for your birthday. 💗</p>
+      // Reset state
+      flame.classList.remove('extinguished');
+      smoke.classList.remove('active');
+      nextBtn.style.display = 'none';
+      timerStatus.innerText = `Candle will blow out in ${timeLeft} seconds... ✨`;
 
-  <div class="upload-box">
-   <p class="small">Choose an audio recording from your phone.</p>
-   <button onclick="document.getElementById('voiceUpload').click()">
-    Add voice note 🎵
-   </button>
-   <input id="voiceUpload" type="file" accept="audio/*" class="hidden">
-   <p id="voiceMessage" class="small"></p>
-   <audio id="voicePlayer" controls class="hidden"></audio>
-  </div>
+      if (candleTimer) clearInterval(candleTimer);
 
-  <button onclick="go(5)">Let's see your pretty photos 📸</button>
- </div>
-</section>
+      candleTimer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          timerStatus.innerText = `Candle will blow out in ${timeLeft} seconds... ✨`;
+        } else {
+          clearInterval(candleTimer);
+          // Blow out candle
+          flame.classList.add('extinguished');
+          smoke.classList.add('active');
+          timerStatus.innerText = "Wish Made & Candle Extinguished! 🎉";
+          
+          // Trigger Party Confetti
+          triggerConfetti();
 
-<!-- PAGE 5: PHOTOS -->
-<section class="page" id="p5">
- <div class="card">
-  <div class="eyebrow">Little moments, lovely memories</div>
-  <div class="hero-art" style="width:105px;height:105px;font-size:48px">📸</div>
-  <h1>Pretty Girl, Pretty Memories</h1>
-  <p class="small">Choose your favourite pictures to make this page yours.</p>
+          // Reveal Next Button
+          setTimeout(() => {
+            nextBtn.style.display = 'block';
+          }, 600);
+        }
+      }, 1000);
+    }
 
-  <div class="upload-box">
-   <input id="photoUpload" type="file" accept="image/*" multiple>
-   <p class="small">Your selected photos will appear below.</p>
-  </div>
+    // Confetti Effect
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ff4081', '#ff80ab', '#ffffff', '#e91e63']
+        });
+      }
+    }
 
-  <div id="photoPreview"></div>
-  <button onclick="go(6)">One more surprise ✨</button>
- </div>
-</section>
-
-<!-- PAGE 6: FLOWER -->
-<section class="page" id="p6">
- <div class="card">
-  <div class="eyebrow">If I could give you flowers...</div>
-  <div class="hero-art" style="width:105px;height:105px;font-size:48px">💐</div>
-  <h1>Which Flower Do You Like Most?</h1>
-
-  <div class="options">
-   <button class="choice" onclick="pick(this,'flower','Red Rose')">🌹<br>Red Rose</button>
-   <button class="choice" onclick="pick(this,'flower','Lotus')">🪷<br>Lotus</button>
-   <button class="choice" onclick="pick(this,'flower','White Rose')">🤍🌹<br>White Rose</button>
-   <button class="choice" onclick="pick(this,'flower','Hibiscus')">🌺<br>Hibiscus</button>
-  </div>
-
-  <button onclick="nextChoice(7,'flower')">Next surprise →</button>
- </div>
-</section>
-
-<!-- PAGE 7: SOFT TOYS -->
-<section class="page" id="p7">
- <div class="card">
-  <div class="eyebrow">Something soft and cuddly</div>
-  <div class="hero-art" style="width:105px;height:105px;font-size:48px">🧸</div>
-  <h1>Pick Your Cuddle Buddy</h1>
-
-  <div class="options">
-   <button class="choice" onclick="pick(this,'toy','Teddy Bear')">🧸<br>Teddy Bear</button>
-   <button class="choice" onclick="pick(this,'toy','Giant Teddy Bear')">🐻<br>Giant Teddy Bear</button>
-   <button class="choice" onclick="pick(this,'toy','Comfort Item')">💗<br>Comfort Item</button>
-   <button class="choice" onclick="pick(this,'toy','Other Soft Toys')">🐰<br>Other Soft Toys</button>
-  </div>
-
-  <button onclick="nextChoice(8,'toy')">Next surprise →</button>
- </div>
-</section>
-
-<!-- PAGE 8: CHOCOLATE -->
-<section class="page" id="p8">
- <div class="card">
-  <div class="eyebrow">Life is sweeter with chocolate</div>
-  <div class="hero-art" style="width:105px;height:105px;font-size:48px">🍫</div>
-  <h1>Your Favourite Chocolate?</h1>
-
-  <div class="options">
-   <button class="choice" onclick="pick(this,'chocolate','Cadbury Dairy Milk')">🍫<br>Cadbury Dairy Milk</button>
-   <button class="choice" onclick="pick(this,'chocolate','Kit Kat')">🍫<br>Kit Kat</button>
-   <button class="choice" onclick="pick(this,'chocolate','Nestle Milkybar')">🤍🍫<br>Nestlé Milkybar</button>
-   <button class="choice" onclick="pick(this,'chocolate','Nestle Munch')">🍫<br>Nestlé Munch</button>
-  </div>
-
-  <button id="submitBtn" onclick="submitAnswers()">Save my choices 💌</button>
-  <p id="sendStatus" class="status" role="status"></p>
-  <button class="secondary" onclick="go(9)">Skip to birthday wishes</button>
- </div>
-</section>
-
-<!-- PAGE 9: FINAL -->
-<section class="page" id="p9">
- <div class="card">
-  <div class="eyebrow">A final wish for you</div>
-  <div class="hero-art">💖</div>
-  <div class="decor-line">WITH WARM WISHES</div>
-  <h1>Once Again, Happy Birthday My Dear</h1>
-
-  <p class="final-message">
-   May God bless you with endless happiness,
-   beautiful memories and all the success
-   your heart wishes for. ❤️
-  </p>
-
-  <p class="final-message">
-   I will always wish the best for you.<br>
-   Stay happy, keep smiling and shine always. ✨
-  </p>
-
-  <div class="decor-line">MADE WITH LOVE</div>
-  <p>
-   Best regards ❤️<br>
-   Yours well-wisher<br>
-   <b>(Devendra)</b>
-  </p>
- </div>
-</section>
-
-<script>
-const answers={
- flower:"",
- toy:"",
- chocolate:""
-};
-
-let timerStarted=false;
-let seconds=10;
-let interval=null;
-let cakeCut=false;
-
-function go(n){
- document.querySelectorAll(".page").forEach(page=>{
-  page.classList.remove("active");
- });
-
- const nextPage=document.getElementById("p"+n);
- if(
+    // Initialize Page
+    window.addEventListener('DOMContentLoaded', () => {
+      createBgHearts();
+      triggerConfetti();
+    });
+  </script>
+</body>
+</html>
